@@ -37,30 +37,7 @@ namespace Lab3
             }
             return String.Format("{0} {1}", this.value, typeVerbose);
         }
-        public static Square operator +(Square instance, double number)
-        {
-            return new Square(instance.value + number, instance.type);
-        }
-        public static Square operator +(double number, Square instance)
-        {
-            return instance + number;
-        }
-        public static Square operator -(Square instance, double number)
-        {
-            return new Square(instance.value - number, instance.type);
-        }
-        public static Square operator -(double number, Square instance)
-        {
-            return instance - number;
-        }
-        public static Square operator *(Square instance, double number)
-        {
-            return new Square(instance.value * number, instance.type);
-        }
-        public static Square operator *(double number, Square instance)
-        {
-            return instance * number;
-        }
+        
         public Square To(MeasureType newType)
         {
             var newValue = this.value;
@@ -111,6 +88,43 @@ namespace Lab3
                 newValue = this.To(MeasureType.mm).To(newType).value;
             }
             return new Square(newValue, newType);
+        }
+        public static Square operator +(Square instance, double number)
+        {
+            return new Square(instance.value + number, instance.type);
+        }
+        public static Square operator +(double number, Square instance)
+        {
+            return instance + number;
+        }
+        public static Square operator -(Square instance, double number)
+        {
+            return new Square(instance.value - number, instance.type);
+        }
+        public static Square operator -(double number, Square instance)
+        {
+            return instance - number;
+        }
+        public static Square operator *(Square instance, double number)
+        {
+            return new Square(instance.value * number, instance.type);
+        }
+        public static Square operator *(double number, Square instance)
+        {
+            return instance * number;
+        }
+        public static Square operator +(Square instance1, Square instance2)
+        {
+            return instance1 + instance2.To(instance1.type).value;
+        }
+
+        public static Square operator -(Square instance1, Square instance2)
+        {
+            return instance1 - instance2.To(instance1.type).value;
+        }
+        public static Square operator *(Square instance1, Square instance2)
+        {
+            return instance1 * instance2.To(instance1.type).value;
         }
     }
 }
