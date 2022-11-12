@@ -89,6 +89,14 @@ namespace Lab3
             }
             return new Square(newValue, newType);
         }
+        public override bool Equals(Object obj)
+        {
+            var p = obj as Square;
+            if (p == null) { 
+                return false;
+            }
+            return (value == p.value) && (type == p.type);
+        }
         public static Square operator +(Square instance, double number)
         {
             return new Square(instance.value + number, instance.type);
@@ -113,6 +121,8 @@ namespace Lab3
         {
             return instance * number;
         }
+
+
         public static Square operator +(Square instance1, Square instance2)
         {
             return instance1 + instance2.To(instance1.type).value;
@@ -125,6 +135,10 @@ namespace Lab3
         public static Square operator *(Square instance1, Square instance2)
         {
             return instance1 * instance2.To(instance1.type).value;
+        }
+        public bool Compare(Square instance1, Square instance2)
+        {
+            return instance1.value > instance2.value;
         }
     }
 }
